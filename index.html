@@ -18,7 +18,57 @@
 <section class="screen"><div class="tag">Screen 9 of 9 · Error state</div><div class="errorbox"><span class="erroricon">🛠️</span><h2 class="errortitle">Something went wrong</h2><p class="sub">A temporary technical issue is preventing the process from continuing. Please try again later.</p><p><b>What you can do:</b></p><ul><li>Wait briefly and try again later.</li><li>Refresh the page if the problem continues.</li><li>Contact the project team or the relevant support person if the issue persists.</li></ul><p class="muted">This is a simulated error state for concept testing. The prototype does not connect to a live mess system.</p></div><div class="actions"><button class="secondary" onclick="go(0)">← Return to start</button><button class="primary" onclick="go(1)">Try again →</button></div></section>
 </main><footer><span>Student design prototype · Concept testing only</span><span id="count">Screen 1 / 9</span></footer></div><p class="muted" style="text-align:center;font-size:13px">This is a concept wireframe, not a live mess ordering or inventory system.</p></div>
 <script>
-let current=0;function go(n){const screens=[...document.querySelectorAll('main .screen')];if(!Number.isInteger(n)||n<0||n>=screens.length)return;current=n;screens.forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.screen-nav [data-screen]').forEach(b=>b.classList.toggle('active',Number(b.dataset.screen)===n));document.getElementById('bar').style.width=((n+1)/screens.length*100)+'%';document.getElementById('count').textContent='Screen '+(n+1)+' / '+screens.length;window.scrollTo({top:0,behavior:'smooth'})}document.querySelectorAll('.screen-nav [data-screen]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.screen))));
-function requestExtra(){let v=document.querySelector('input[name=extra]:checked');document.getElementById('response').textContent=!v?'Please select an option.':v.value==='Yes'?'Request noted in this prototype. Ask staff; availability and policy apply.':'Thank you. Your standard portion is sufficient.'}
-function saveFeedback(){let v=document.getElementById('feedback').value.trim();document.getElementById('saved').textContent=v?'Feedback entered on this screen only. It is not sent or stored; record the response in your Google Form or test sheet.':'Please enter feedback first.'}
+(function () {
+  function initPrototype() {
+    const screens = Array.from(document.querySelectorAll("main .screen"));
+    const buttons = Array.from(document.querySelectorAll(".screen-nav [data-screen]"));
+    const bar = document.getElementById("bar");
+    const count = document.getElementById("count");
+
+    window.go = function (index) {
+      const n = Number(index);
+      if (!Number.isInteger(n) || n < 0 || n >= screens.length) return;
+      screens.forEach((screen, i) => {
+        screen.classList.toggle("active", i === n);
+        screen.setAttribute("aria-hidden", i === n ? "false" : "true");
+      });
+      buttons.forEach(button => button.classList.toggle("active", Number(button.dataset.screen) === n));
+      if (bar) bar.style.width = ((n + 1) / screens.length * 100) + "%";
+      if (count) count.textContent = "Screen " + (n + 1) + " / " + screens.length;
+      window.scrollTo(0, 0);
+    };
+
+    window.requestExtra = function () {
+      const selected = document.querySelector('input[name="extra"]:checked');
+      const output = document.getElementById("response");
+      if (output) output.textContent = !selected ? "Please select an option." :
+        selected.value === "Yes" ? "Request noted in this prototype. Ask staff; availability and policy apply." :
+        "Thank you. Your standard portion is sufficient.";
+    };
+
+    window.saveFeedback = function () {
+      const input = document.getElementById("feedback");
+      const output = document.getElementById("saved");
+      const value = input ? input.value.trim() : "";
+      if (output) output.textContent = value ?
+        "Feedback entered on this screen only. It is not sent or stored; record the response in your Google Form or test sheet." :
+        "Please enter feedback first.";
+    };
+
+    buttons.forEach(button => {
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        window.go(button.dataset.screen);
+      });
+    });
+
+    window.go(0);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPrototype);
+  } else {
+    initPrototype();
+  }
+})();
 </script></body></html>
