@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta name="prototype-revision" content="system-error-clarification-bd470d4">
+<title>Updated Single-Portion Serving System Prototype</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f4fa;font:16px Arial;color:#20243a}.wrap{max-width:850px;margin:25px auto;padding:0 14px}.app{background:white;border:1px solid #ddd;border-radius:16px;overflow:hidden}.head{background:#5145cd;color:white;padding:20px}.head h1{margin:7px 0;font-size:23px}.progress{height:5px;background:#ddd}.bar{height:5px;background:#70d6ad;width:20%}main{padding:25px;min-height:470px}.screen{display:none}.screen.active{display:block}.tag{font-size:12px;color:#5145cd;font-weight:bold;text-transform:uppercase}h2{font-size:25px}.sub,.muted{color:#687087;line-height:1.5}.panel,.tile{border:1px solid #e1e3ed;border-radius:12px;padding:16px;margin:14px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}.tile{text-align:center;background:#fafaff}.emoji{display:block;font-size:35px;margin-bottom:8px}.tile p{font-size:13px;color:#687087}.errorbox{background:#fff1f0;border:1px solid #f0b8b4;border-left:5px solid #c0392b;border-radius:10px;padding:18px;margin:18px 0}.erroricon{font-size:42px;display:block;margin-bottom:8px}.errortitle{color:#a12d27}.notice{background:#eff8f4;border-left:4px solid #16845b;padding:13px;border-radius:7px;line-height:1.5}.actions{display:flex;justify-content:space-between;margin-top:24px;gap:10px}button{border:0;border-radius:9px;padding:12px 17px;font-weight:bold;cursor:pointer}.primary{background:#5145cd;color:white}.secondary{background:#eeeef7;color:#30334b}.success{background:#e4f5ec;color:#126b4b}.choice{display:block;padding:13px;border:1px solid #ddd;border-radius:9px;margin:10px 0}textarea{width:100%;min-height:85px;padding:10px;border:1px solid #ddd;border-radius:8px;font:inherit}footer{border-top:1px solid #eee;padding:14px 24px;color:#687087;font-size:12px;display:flex;justify-content:space-between}.screen-nav{display:flex;flex-wrap:wrap;gap:7px;padding:12px 20px;background:#fafaff;border-bottom:1px solid #e7e7f0}.screen-nav button{padding:8px 11px;background:#eeeef7;color:#30334b;font-size:12px}.screen-nav button.active{background:#5145cd;color:white}.screen-nav-label{width:100%;font-size:11px;font-weight:bold;color:#687087;text-transform:uppercase;letter-spacing:.05em}
+</style></head><body><div class="wrap"><div class="app">
+<header class="head"><small>MESS SERVICE CONCEPT · INTERACTIVE WIREFRAME</small><h1>Single-Portion Serving System</h1>One standard pre-portioned meal for each student</header>
+<div class="progress"><div class="bar" id="bar"></div></div><nav class="screen-nav" aria-label="Prototype screen navigation"><span class="screen-nav-label">Jump to any screen</span><button type="button" data-screen="0" class="active">1 Overview</button><button type="button" data-screen="1">2 Preparation</button><button type="button" data-screen="2">3 Ready</button><button type="button" data-screen="3">4 Collection</button><button type="button" data-screen="4">5 Extra serving</button><button type="button" data-screen="5">6 No meals</button><button type="button" data-screen="6">7 No extra</button><button type="button" data-screen="7">8 Invalid selection</button><button type="button" data-screen="8">9 System error</button></nav><main>
+<section class="screen active"><div class="tag">Screen 1 of 9 · Overview</div><h2>Welcome to the meal service</h2><p class="sub">This concept prepares individual meal containers before peak serving time. Each student initially collects one standard portion. An additional serving may be requested if food is available and mess policy permits.</p><div class="panel">🍱 <b>One container. One standard portion.</b><p class="muted">Designed to make meal collection more organised.</p></div><div class="grid"><div class="tile"><span class="emoji">👩‍🍳</span><b>Prepare</b><p>Staff prepare the meal.</p></div><div class="tile"><span class="emoji">🥡</span><b>Pre-portion</b><p>Containers are filled in advance.</p></div><div class="tile"><span class="emoji">🙋</span><b>Collect</b><p>Students collect one portion.</p></div></div><div class="panel"><b>Preview an error state</b><p class="muted">Use this option to see how the prototype communicates a temporary system issue.</p><button class="secondary" onclick="go(8)">Preview system error</button></div><div class="actions"><span></span><button class="primary" onclick="go(1)">Start →</button></div></section>
+<section class="screen"><div class="tag">Screen 2 of 9 · Staff preparation</div><h2>Prepare standard portions</h2><p class="sub">Before the meal period, staff prepare the meal and fill identical containers with the planned standard portion.</p><div class="grid"><div class="tile"><span class="emoji">🍚</span><b>Rice</b><p>Same planned quantity</p></div><div class="tile"><span class="emoji">🍛</span><b>Main dish</b><p>Portioned consistently</p></div><div class="tile"><span class="emoji">🥗</span><b>Side item</b><p>Included according to menu</p></div></div><div class="notice">The exact portion size should be decided with mess staff and reviewed during user testing. This prototype does not assume a fixed gram quantity.</div><div class="actions"><button class="secondary" onclick="go(0)">← Back</button><button class="primary" onclick="go(2)">Next →</button></div></section>
+<section class="screen"><div class="tag">Screen 3 of 9 · Ready for collection</div><h2>Pre-portioned meals are ready</h2><p class="sub">Filled containers are arranged near the serving counter so students can collect a prepared meal.</p><div class="panel"><span class="emoji">🥡</span><b>Standard meal container</b><p class="muted">One container is issued to each student initially.</p><b style="color:#16845b">● Ready</b></div><div class="notice">Staff should follow the mess's food-safety and hygiene procedures while storing and serving prepared meals.</div><div class="panel"><b>Availability exception</b><p class="muted">Preview what a student sees if all prepared meals have been collected.</p><button class="secondary" onclick="go(5)">Preview: no meals available</button></div><div class="actions"><button class="secondary" onclick="go(1)">← Back</button><button class="primary" onclick="go(3)">Next →</button></div></section>
+<section class="screen"><div class="tag">Screen 4 of 9 · Student collection</div><h2>Collect your meal</h2><p class="sub">At the counter, collect one standard pre-portioned container and proceed to your table.</p><div class="panel" style="text-align:center"><span class="emoji">🙋　🥡</span><b>Your standard portion is ready</b><p class="muted">Collect one container from the serving counter.</p><button class="success" onclick="document.getElementById('collected').textContent='Meal collected — proceed to your table.'">Collect meal</button><p id="collected" class="muted"></p><button class="secondary" onclick="go(7)">Preview: invalid selection</button></div><div class="actions"><button class="secondary" onclick="go(2)">← Back</button><button class="primary" onclick="go(4)">Next →</button></div></section>
+<section class="screen"><div class="tag">Screen 5 of 9 · Additional serving</div><h2>Would you like an additional serving?</h2><p class="sub">If the standard portion is not enough, ask mess staff whether another serving is available.</p><label class="choice"><input type="radio" name="extra" value="No"> No, the standard portion is enough</label><label class="choice"><input type="radio" name="extra" value="Yes"> Yes, I would like to request more</label><div class="panel"><b>Additional serving request</b><p class="muted">An extra portion is subject to food availability and mess policy.</p><button class="primary" onclick="requestExtra()">Submit response</button><p id="response" class="muted"></p><button class="secondary" onclick="go(6)">Preview: additional serving unavailable</button></div><div class="panel"><b>Share feedback</b><p class="muted">What would make this process better?</p><textarea id="feedback" placeholder="Write your feedback here..."></textarea><p><button class="secondary" onclick="saveFeedback()">Save feedback</button></p><p id="saved" class="muted"></p></div><div class="actions"><button class="secondary" onclick="go(3)">← Back</button><button class="primary" onclick="go(0)">Restart ↻</button></div></section>
+
+<section class="screen"><div class="tag">Screen 6 of 9 · Error state</div><div class="errorbox"><span class="erroricon">🥡</span><h2 class="errortitle">No meals available</h2><p class="sub">All pre-portioned meals have been collected. Please wait for restocking before trying again.</p><p><b>What you can do:</b></p><ul><li>Please wait until the meals are restocked.</li><li>Check with mess staff if you need an update on availability.</li></ul><p class="muted">This is a demonstration message. Actual availability would need to be confirmed by mess staff.</p></div><div class="actions"><button class="secondary" onclick="go(2)">← Back to meals</button><button class="primary" onclick="go(3)">Continue to collection →</button></div></section>
+<section class="screen"><div class="tag">Screen 7 of 9 · Error state</div><div class="errorbox"><span class="erroricon">⚠️</span><h2 class="errortitle">Additional serving unavailable</h2><p class="sub">No extra food is currently available. Please wait until an additional serving becomes available.</p><p><b>What you can do:</b></p><ul><li>Please wait until extra food becomes available.</li><li>You may continue with your standard portion if it is sufficient.</li></ul><p class="muted">An additional serving is never guaranteed.</p></div><div class="actions"><button class="secondary" onclick="go(4)">← Back to serving options</button><button class="primary" onclick="go(0)">Return to start</button></div></section>
+<section class="screen"><div class="tag">Screen 8 of 9 · Error state</div><div class="errorbox"><span class="erroricon">❔</span><h2 class="errortitle">Selection not recognised</h2><p class="sub">You have not selected or collected a valid meal. Please return to the meal collection screen and select a valid meal.</p><p><b>What you can do:</b></p><ul><li>Return to the meal collection screen.</li><li>Select and collect a valid standard meal container.</li><li>Ask mess staff if you need assistance.</li></ul></div><div class="actions"><button class="secondary" onclick="go(3)">← Back to collection</button><button class="primary" onclick="go(0)">Return to start</button></div></section>
+<section class="screen"><div class="tag">Screen 9 of 9 · Error state</div><div class="errorbox"><span class="erroricon">🛠️</span><h2 class="errortitle">Meal collection system unavailable</h2><p class="sub">The meal collection system is currently unavailable, so your meal collection cannot be processed at this time.</p><p><b>What you can do:</b></p><ul><li>Please wait and try again later.</li><li>Contact mess staff for assistance or to confirm when meal collection can resume.</li></ul><p class="muted">This is a simulated error state for concept testing. The prototype does not connect to a live mess system.</p></div><div class="actions"><button class="secondary" onclick="go(0)">← Return to start</button><button class="primary" onclick="go(3)">Return to collection →</button></div></section>
+</main><footer><span>Student design prototype · Concept testing only</span><span id="count">Screen 1 / 9</span></footer></div><p class="muted" style="text-align:center;font-size:13px">This is a concept wireframe, not a live mess ordering or inventory system.</p></div>
+<script>
+(function () {
+  function initPrototype() {
+    const screens = Array.from(document.querySelectorAll("main .screen"));
+    const buttons = Array.from(document.querySelectorAll(".screen-nav [data-screen]"));
+    const bar = document.getElementById("bar");
+    const count = document.getElementById("count");
+
+    window.go = function (index) {
+      const n = Number(index);
+      if (!Number.isInteger(n) || n < 0 || n >= screens.length) return;
+      screens.forEach((screen, i) => {
+        screen.classList.toggle("active", i === n);
+        screen.setAttribute("aria-hidden", i === n ? "false" : "true");
+      });
+      buttons.forEach(button => button.classList.toggle("active", Number(button.dataset.screen) === n));
+      if (bar) bar.style.width = ((n + 1) / screens.length * 100) + "%";
+      if (count) count.textContent = "Screen " + (n + 1) + " / " + screens.length;
+      window.scrollTo(0, 0);
+    };
+
+    window.requestExtra = function () {
+      const selected = document.querySelector('input[name="extra"]:checked');
+      const output = document.getElementById("response");
+      if (output) output.textContent = !selected ? "Please select an option." :
+        selected.value === "Yes" ? "Request noted in this prototype. Ask staff; availability and policy apply." :
+        "Thank you. Your standard portion is sufficient.";
+    };
+
+    window.saveFeedback = function () {
+      const input = document.getElementById("feedback");
+      const output = document.getElementById("saved");
+      const value = input ? input.value.trim() : "";
+      if (output) output.textContent = value ?
+        "Feedback entered on this screen only. It is not sent or stored; record the response in your Google Form or test sheet." :
+        "Please enter feedback first.";
+    };
+
+    buttons.forEach(button => {
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        window.go(button.dataset.screen);
+      });
+    });
+
+    window.go(0);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPrototype);
+  } else {
+    initPrototype();
+  }
+})();
+</script></body></html>
